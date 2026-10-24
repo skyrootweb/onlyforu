@@ -1,0 +1,71 @@
+:root{--paper:#ece2cf;--ink:#1f3a5f;--blue:#4f7fb8;--gold:#c9a24b;--wax:#8f2a24}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:'Caveat',cursive;color:var(--ink);overflow:hidden;
+  background:radial-gradient(circle at 30% 20%,#f4ecdc,transparent 60%),
+  repeating-linear-gradient(45deg,#ebe0cb 0 2px,#e8dcc6 2px 4px);background-color:var(--paper)}
+main{position:relative;height:100dvh}
+.page{position:absolute;inset:0;display:grid;place-items:center;padding:56px 22px;
+  opacity:0;visibility:hidden;transition:opacity .7s,visibility .7s}
+.page.active{opacity:1;visibility:visible}
+.content{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;max-width:760px;z-index:2}
+.content.row{flex-direction:column;gap:22px}
+@media(min-width:760px){.content.row{flex-direction:row;gap:48px;text-align:left}}
+.script{font-family:'Great Vibes','Brush Script MT',cursive;font-weight:400;line-height:1.1}
+.big{font-size:clamp(2.6rem,9vw,4.6rem)}
+.mid{font-size:clamp(2rem,6.5vw,3.2rem)}
+.hand{font-size:clamp(1.4rem,4.2vw,1.9rem);line-height:1.35}
+.tiny{font-size:1.2rem;opacity:.7}
+
+.deco{position:fixed;width:min(34vw,220px);pointer-events:none;z-index:1}
+.tl{top:0;left:0}
+.br{bottom:0;right:0;transform:rotate(180deg)}
+.tr{top:0;right:0;width:min(20vw,120px);transform:scaleX(-1);opacity:.85}
+
+.gift{font-size:3rem;background:none;border:0;cursor:pointer;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+.oval{width:clamp(190px,46vw,260px);aspect-ratio:3/4;border-radius:50%;padding:9px;
+  background:linear-gradient(135deg,#e8c868,#a8832f,#e8c868);box-shadow:0 8px 22px #0003}
+.oval img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.note{max-width:300px}
+
+.next{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;
+  font:inherit;font-size:1.5rem;color:var(--ink);background:#f6efe0;border:2px solid var(--ink);
+  border-radius:999px;padding:4px 26px;cursor:pointer}
+.next:hover,.next:focus-visible{background:var(--ink);color:#f6efe0}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+.envelope{position:relative;width:min(70vw,290px);height:min(46vw,190px);margin:10px 0;border:0;background:none;cursor:pointer;perspective:700px}
+.envelope span{position:absolute;display:block}
+.envelope .back{inset:0;background:#d9c7a0;border-radius:4px}
+.envelope .paper-in{left:8%;right:8%;top:8%;bottom:8%;background:#fbf6ea;transition:transform .8s .5s}
+.envelope .front{inset:0;background:#efe0bd;border-radius:4px;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%)}
+.envelope .flap{left:0;right:0;top:0;height:56%;background:#e4d2a8;clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;transition:transform .7s}
+.envelope .seal{left:50%;top:48%;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#c0453c,var(--wax));color:#f5d6d2;display:grid;place-items:center;
+  font-size:1.2rem;box-shadow:0 2px 6px #0005;transition:opacity .3s}
+.envelope.open .flap{transform:rotateX(180deg)}
+.envelope.open .seal{opacity:0}
+.envelope.open .paper-in{transform:translateY(-55%)}
+
+.polaroid{width:clamp(150px,38vw,210px);padding:8px;background:#c6d8ee;border:2px solid #fff;transform:rotate(var(--r,-3deg));box-shadow:0 6px 16px #0003}
+.polaroid img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.letter{max-width:360px;padding:22px 24px;background:#f5eddc;border:2px dashed #8aa6c9;outline:6px solid #f5eddc;transform:rotate(1.5deg);box-shadow:0 6px 16px #0002}
+.dear{font-size:2.2rem;margin-bottom:6px}
+
+.frame{width:min(62vw,290px);padding:10px;background:#f6efe0;box-shadow:0 8px 24px #0003;transform:rotate(-1.5deg)}
+.frame img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+
+#hearts{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+.heart{position:absolute;bottom:-30px;color:#b8433c;animation:rise linear forwards}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.gift{animation:none}.page,.envelope span{transition:none}.heart{display:none}}
+
+.duo{display:flex;gap:16px;justify-content:center}
+.duo .polaroid{width:clamp(130px,38vw,200px)}
+
+#music{position:fixed;top:12px;right:12px;z-index:6;width:42px;height:42px;border-radius:50%;
+  border:2px solid var(--ink);background:#f6efe0;font-size:1.2rem;cursor:pointer}
+#music.off{opacity:.5;text-decoration:line-through}
